@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EmpleadoService } from '../empleado.service';
 import { Empleados } from '../empleados';
 
@@ -14,7 +15,8 @@ export class ListarEmpleadosComponent implements OnInit {
   empleados: Empleados[]; //9.1 add
 
   //15.Agregamos al constructor despues de crear todo del backend y servicios
-  constructor(private empleadoServicio: EmpleadoService) { }
+  //23.2- Se agrega el router
+  constructor(private empleadoServicio: EmpleadoService, private router: Router) { }
 
   ngOnInit(): void {
     this.obtenerEmpleados(); //15.2 Lo ingresamos al "ngOnInit"
@@ -36,6 +38,18 @@ export class ListarEmpleadosComponent implements OnInit {
     this.empleadoServicio.obtenerListaDeEmpleados().subscribe(dato => {
       this.empleados = dato;
     });
+  }
+
+  //23.- Se agrega lo siguiente
+  eliminarEmpleado(id: number) {
+    this.empleadoServicio.eliminarEmpleados(id).subscribe(dato => {
+      this.obtenerEmpleados();
+    })
+  }
+
+  //23.1- Se agrega lo siguiente
+  verDetallesDelEmpleado(id: number) {
+    this.router.navigate(['empleados-detalles', id]);
   }
 
 }

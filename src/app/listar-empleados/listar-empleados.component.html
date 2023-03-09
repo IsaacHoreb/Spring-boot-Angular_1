@@ -20,6 +20,11 @@
             <td> {{Empleados.emial}} </td>
             <td> {{Empleados.telefono}} </td>
             <td> {{Empleados.direccion}} </td>
+            <td>
+                <!--24.1-Bottones-->
+                <button (click)= "eliminarEmpleado(Empleados.id)" class="btn btn-danger" style="margin-left: 10px">Eliminar</button>
+                <button (click)= "verDetallesDelEmpleado(Empleados.id)" class="btn btn-primary" style="margin-left: 10px">Detalles</button>
+              </td>
         </tr>
 
     </tbody>
